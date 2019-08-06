@@ -9,18 +9,18 @@ class Company(models.Model):
 
 class Directors(models.Model):
     date = models.DateTimeField('Date Scraped', primary_key=True)
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    ticker = models.ForeignKey(Company, on_delete=models.CASCADE, db_column="ticker")
     director_name = models.CharField(max_length=30)
     director_role = models.CharField(max_length=30)
 
 class Dividends(models.Model):
     date = models.DateTimeField('Date Scraped', primary_key=True)
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    ticker = models.ForeignKey(Company, on_delete=models.CASCADE, db_column="ticker")
     dividends = models.FloatField()
 
 class Ratios(models.Model):
     date = models.DateTimeField('Date Scraped', primary_key=True)
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    ticker = models.ForeignKey(Company, on_delete=models.CASCADE, db_column="ticker")
     market_cap = models.FloatField()
     price_equity = models.FloatField()
     EPS = models.FloatField()
@@ -38,7 +38,7 @@ class Ratios(models.Model):
 
 class IncomeStatement(models.Model):
     date = models.DateTimeField('Date Scraped', primary_key=True)
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    ticker = models.ForeignKey(Company, on_delete=models.CASCADE, db_column="ticker")
     sales_revenue = models.FloatField()
     investment_revenue = models.FloatField()
     total_core_revenue = models.FloatField()
@@ -56,7 +56,7 @@ class IncomeStatement(models.Model):
 
 class Price(models.Model):
     date = models.DateTimeField('Date Scraped', primary_key=True)
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    ticker = models.ForeignKey(Company, on_delete=models.CASCADE, db_column="ticker")
     price = models.FloatField()
     capital_adjusted = models.FloatField()
     volume_traded = models.FloatField()
@@ -66,7 +66,7 @@ class Price(models.Model):
 
 class CompanyProfile(models.Model):
     date = models.DateTimeField('Date Scraped', primary_key=True)
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    ticker = models.ForeignKey(Company, on_delete=models.CASCADE, db_column="ticker")
     overviews = models.TextField()
     performance = models.TextField()
     outlook = models.TextField()
@@ -74,7 +74,7 @@ class CompanyProfile(models.Model):
 
 class CashTable(models.Model):
     date = models.DateTimeField('Date Scraped', primary_key=True)
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    ticker = models.ForeignKey(Company, on_delete=models.CASCADE, db_column="ticker")
     operating = models.FloatField()
     investing = models.FloatField()
     finance = models.FloatField()
@@ -82,7 +82,7 @@ class CashTable(models.Model):
     
 class Equity(models.Model):
     date = models.DateTimeField('Date Scraped', primary_key=True)
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    ticker = models.ForeignKey(Company, on_delete=models.CASCADE, db_column="ticker")
     paid_in_capital = models.FloatField()
     reatained_earnings = models.FloatField()
     minority_interest = models.FloatField()
@@ -91,7 +91,7 @@ class Equity(models.Model):
 
 class Liabilities(models.Model):
     date = models.DateTimeField('Date Scraped', primary_key=True)
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    ticker = models.ForeignKey(Company, on_delete=models.CASCADE, db_column="ticker")
     payables = models.FloatField()
     current_debt = models.FloatField()
     current_liabilities = models.FloatField()
@@ -103,7 +103,7 @@ class Liabilities(models.Model):
 
 class Assets(models.Model):
     date = models.DateTimeField('Date Scraped', primary_key=True)
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    ticker = models.ForeignKey(Company, on_delete=models.CASCADE, db_column="ticker")
     cash_equity = models.FloatField()
     NTR = models.FloatField()
     current_inventory = models.FloatField()
